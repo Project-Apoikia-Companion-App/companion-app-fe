@@ -4,10 +4,10 @@ import Timer from "./components/Timer"
 
 function App() {
   const time = new Date();
-  time.setSeconds(time.getSeconds());
+  time.setSeconds(time.getSeconds() + 60);
   return (
     <div>
-      <Timer expiryTimestamp={time} />
+      <Timer expiryTimestamp={time} autoStart={false} />
     </div>
   );
 }
