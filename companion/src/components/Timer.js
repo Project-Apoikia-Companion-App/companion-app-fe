@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTimer } from "react-timer-hook";
 
-const Timer = ({ expiryTimestamp }) => {
+const Timer = ({ expiryTimestamp, autoStart }) => {
     const {
         seconds,
         minutes,
         isRunning,
         start,
-        pause,
-        resume,
         restart,
-    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+    } = useTimer({ expiryTimestamp, autoStart, onExpire: () => console.warn('onExpire called') });
+
+    const [repeatFlag, setRepeatFlag] = useState(false);
+
+    const repeat = () => {
+
+    }
+
+    const addTen = () => {
+        expiryTimestamp += 10;
+    }
+
+    const addFifteen = () => {
+        expiryTimestamp += 15;
+    }
+
+    const addThirty = () => {
+        expiryTimestamp += 30;
+    }
 
     return (
         <div style={{ textAlign: 'center' }}>
@@ -18,18 +34,17 @@ const Timer = ({ expiryTimestamp }) => {
             <p>Timer Demo</p>
             <div style={{ fontSize: '100px' }}>
                 {minutes > 0 && <span>{minutes}:</span>}
-                <span>{seconds}</span>
+                <span>{seconds.toString().padStart(2, "0")}</span>
             </div>
             <p>{isRunning ? 'Running' : 'Not running'}</p>
             <button onClick={start}>Start</button>
-            <button onClick={pause}>Pause</button>
-            <button onClick={resume}>Resume</button>
             <button onClick={() => {
                 // Restarts to 5 minutes timer
                 const time = new Date();
-                time.setSeconds(time.getSeconds() + 60);
-                restart(time)
+                time.setSeconds(time.getSeconds());
+                restart(time, false)
             }}>Reset</button>
+            <button onClick={repeat}>Repeat</button>
         </div>
     );
 };
