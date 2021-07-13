@@ -1,20 +1,21 @@
 import './App.css';
 import React, { useState } from "react";
-import Timer from "./components/Timer"
+import Timer from "./components/Timer";
 
 function App() {
-  const [endTimestamp, setEndTimestamp] = useState(new Date());
+  const time = Date.now();
+  const [endTimestamp, setEndTimestamp] = useState(time);
 
-  const addTime = (seconds) => {
-    const time = new Date(endTimestamp.getTime());
-    time.setSeconds(time.getSeconds() + seconds);
+  const addTime = (ms) => {
+    const time = Date.now() + ms;
     setEndTimestamp(time);
+    console.log(endTimestamp);
   }
 
   return (
     <div>
       <Timer
-        expiryTimestamp={endTimestamp}
+        date={endTimestamp}
         addTime={addTime}
       />
     </div>
