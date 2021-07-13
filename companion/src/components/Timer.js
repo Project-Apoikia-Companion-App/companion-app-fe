@@ -1,33 +1,41 @@
-import React, { useState } from "react";
-import { useTimer } from "react-timer-hook";
+import React from "react";
+import Countdown, { zeroPad } from "react-countdown";
 
-const Timer = ({ expiryTimestamp, addTime }) => {
-    const timer = useTimer({ expiryTimestamp, autoStart: false });
+const Timer = ({ date, addTime }) => {
+    const addFifteen = () => {
+        addTime(15000);
+    }
 
-    const [repeatFlag, setRepeatFlag] = useState(false);
+    const addThirty = () => {
+        addTime(30000);
+    }
+
+    const addSixty = () => {
+        addTime(60000);
+    }
+
+    const renderer = ({ minutes, seconds }) => {
+        return (
+            <div style={{ textAlign: 'center', fontSize: 100 }}>
+                <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
+            </div>
+        )
+    }
 
     return (
         <React.Fragment>
+            <Countdown
+                date={date}
+                renderer={renderer}
+                controlled={false}
+            />
             <div style={{ textAlign: 'center' }}>
-                <h1>react-timer-hook </h1>
-                <p>Timer Demo</p>
-                <div style={{ fontSize: '100px' }}>
-                    {timer.minutes > 0 && <span>{timer.minutes}:</span>}
-                    <span>{timer.seconds.toString().padStart(2, "0")}</span>
-                </div>
-                <p>{timer.isRunning ? 'Running' : 'Not running'}</p>
-                <p>{repeatFlag ? "Repeating" : "Not repeating"}</p>
-                <button onClick={timer.start}>Start</button>
-                <button onClick={() => {
-                    const time = new Date();
-                    timer.restart(time, false);
-                }}>Reset</button>
-                <button onClick={() => setRepeatFlag(!repeatFlag)}>Repeat</button>
+                <button onClick={() => addFifteen()}>:15</button>
+                <button onClick={() => addThirty()}>:30</button>
+                <button onClick={() => addSixty()}>:60</button>
             </div>
-            <div style={{ textAlign: "center" }}>
-                <button onClick={() => addTime(10)}>+10s</button>
-                <button onClick={() => addTime(15)}>+15s</button>
-                <button onClick={() => addTime(30)}>+30s</button>
+            <div style={{ textAlign: 'center' }}>
+                <button>Start</button>
             </div>
         </React.Fragment>
     );
