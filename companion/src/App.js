@@ -13,23 +13,41 @@ function App() {
   }
 
   return (
-    <div className="character container">
-      <Timer
-        date={endTimestamp}
-        addTime={addTime}
-      />
-      <Timer
-        date={endTimestamp}
-        addTime={addTime}
-      />
-      <Timer
-        date={endTimestamp}
-        addTime={addTime}
-      />
-      <Timer
-        date={endTimestamp}
-        addTime={addTime}
-      />
+    <div className="player-container">
+      <h2>Apoikia</h2>
+      <div className="timers">
+        <div className="citizen-container">
+          <h3 className="citizen">Citizen 1</h3>
+          <Timer
+            date={endTimestamp}
+            addTime={addTime}
+          />
+        </div>
+        <div className="citizen-container">
+          <h3 className="citizen">Citizen 2</h3>
+          <Timer
+            date={endTimestamp}
+            addTime={addTime}
+          />
+        </div>
+        <div className="citizen-container">
+          <h3 className="citizen">Citizen 3</h3>
+          <Timer
+            date={endTimestamp}
+            addTime={addTime}
+          />
+        </div>
+        <div className="citizen-container">
+          <h3 className="citizen">Citizen 4</h3>
+          <Timer
+            date={endTimestamp}
+            addTime={addTime}
+          />
+        </div>
+      </div>
+      <div className="footer">
+        Test
+      </div>
     </div>
   );
 }
