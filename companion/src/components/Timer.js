@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import Countdown, { zeroPad } from "react-countdown";
+import "../styles/Timer.css";
 
 const Timer = ({ date, addTime }) => {
     const countdownRef = useRef();
@@ -11,7 +12,6 @@ const Timer = ({ date, addTime }) => {
     const addFifteen = () => {
         addTime(15000);
         start();
-        console.log(countdownRef.current.isCompleted());
     }
 
     const addThirty = () => {
@@ -26,7 +26,7 @@ const Timer = ({ date, addTime }) => {
 
     const renderer = ({ minutes, seconds }) => {
         return (
-            <div style={{ textAlign: 'center', fontSize: 100 }}>
+            <div style={{ textAlign: 'center', fontSize: 60 }}>
                 <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
             </div>
         )
@@ -34,19 +34,22 @@ const Timer = ({ date, addTime }) => {
 
     return (
         <React.Fragment>
-            <Countdown
-                date={date}
-                renderer={renderer}
-                controlled={false}
-                ref={countdownRef}
-            />
-            <div style={{ textAlign: 'center' }}>
-                <button onClick={() => countdownRef.current.pause()}>Pause</button>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-                <button onClick={() => addFifteen()}>:15</button>
-                <button onClick={() => addThirty()}>:30</button>
-                <button onClick={() => addSixty()}>:60</button>
+            <div className="timer-container">
+                <div className="increment container">
+                    <button onClick={() => addFifteen()}>:15</button>
+                    <button onClick={() => addThirty()}>:30</button>
+                    <button onClick={() => addSixty()}>:60</button>
+                </div>
+                <Countdown
+                    date={date}
+                    renderer={renderer}
+                    controlled={false}
+                    ref={countdownRef}
+                    autoStart={false}
+                />
+                <div className="control container">
+                    <button onClick={() => countdownRef.current.pause()}>Pause</button>
+                </div>
             </div>
         </React.Fragment >
     );
