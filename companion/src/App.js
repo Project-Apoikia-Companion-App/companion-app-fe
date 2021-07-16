@@ -3,13 +3,12 @@ import React, { useState } from "react";
 import Timer from "./components/Timer";
 
 function App() {
-  const time = Date.now() + 1000;
+  const time = Date.now();
   const [endTimestamp, setEndTimestamp] = useState(time);
 
   const addTime = (ms) => {
     const time = Date.now() + ms;
     setEndTimestamp(time);
-    console.log(endTimestamp);
   }
 
   return (
@@ -46,7 +45,6 @@ function App() {
         </div>
       </div>
       <div className="footer">
-        Test
       </div>
     </div>
   );
