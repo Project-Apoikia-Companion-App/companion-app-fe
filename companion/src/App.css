@@ -17,7 +17,6 @@
 .citizen {
   transform: rotate(270deg);
   transform-origin: 39% 70%;
-  border: 1px solid black;
 }
 
 .citizen-container {

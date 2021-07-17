@@ -9,6 +9,10 @@ const Timer = ({ date, addTime }) => {
         countdownRef.current.start();
     }
 
+    const reset = () => {
+        addTime(0);
+    }
+
     const addFifteen = () => {
         addTime(15000);
         start();
@@ -48,7 +52,9 @@ const Timer = ({ date, addTime }) => {
                     autoStart={false}
                 />
                 <div className="control container">
+                    <button onClick={() => start()}>Start</button>
                     <button onClick={() => countdownRef.current.pause()}>Pause</button>
+                    <button onClick={() => reset()}>Reset</button>
                 </div>
             </div>
         </React.Fragment >
