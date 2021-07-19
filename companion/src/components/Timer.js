@@ -15,22 +15,19 @@ const Timer = ({ date, addTime }) => {
 
     const addFifteen = () => {
         addTime(15000);
-        start();
     }
 
     const addThirty = () => {
         addTime(30000);
-        start();
     }
 
     const addSixty = () => {
         addTime(60000);
-        start();
     }
 
     const renderer = ({ minutes, seconds }) => {
         return (
-            <div style={{ textAlign: 'center', fontSize: 60 }}>
+            <div onClick={() => start()} style={{ textAlign: 'center', fontSize: 60 }}>
                 <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
             </div>
         )
@@ -52,7 +49,6 @@ const Timer = ({ date, addTime }) => {
                     autoStart={false}
                 />
                 <div className="control container">
-                    <button onClick={() => start()}>Start</button>
                     <button onClick={() => countdownRef.current.pause()}>Pause</button>
                     <button onClick={() => reset()}>Reset</button>
                 </div>
